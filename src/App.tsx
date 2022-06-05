@@ -5,12 +5,14 @@ import { getFeaturesList } from './components/table/Table.actions'
 import { useAppDispatch } from './store/store'
 import { Routes, Route } from 'react-router-dom'
 import { AppStyle } from './App.styles'
+import { getUserSettings } from './components/settings/UserSettings.actions'
 
 const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(getFeaturesList())
+    dispatch(getUserSettings())
   }, [])
 
   return (

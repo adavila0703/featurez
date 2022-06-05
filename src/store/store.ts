@@ -4,9 +4,11 @@ import thunk, { ThunkAction, ThunkDispatch, ThunkMiddleware } from 'redux-thunk'
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
 import { ITableState } from '../components/table/Table.reducer'
 import { createLogger } from 'redux-logger'
+import { ISettingsState, settingsReducer } from '../components/settings/UserSettings.reducer'
 
 export const appReducer = combineReducers({
   tableState: tableStateReducer,
+  settings: settingsReducer,
 })
 
 const rootReducer = (state: any, action: any): any => appReducer(state, action)
@@ -31,4 +33,5 @@ export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export interface IAppReducerState {
   tableState: ITableState
+  settings: ISettingsState
 }

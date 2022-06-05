@@ -6,3 +6,5 @@ export const featureSelector = (state: IAppReducerState) => state.tableState.fea
 export const featureTableData = createSelector(featureSelector, (featureList) => {
   return featureList
 })
+
+export const isLoadingSelector = (state: IAppReducerState) => state.tableState.isLoading

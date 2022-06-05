@@ -5,10 +5,14 @@ export const SettingsTitle = styled.h1`
   color: white;
   display: flex;
   justify-content: center;
+  padding-top: 10px;
 `
 
 export const ButtonContainer = styled.div`
-  padding-top: 10px;
+  background-color: white;
+  margin: auto;
+  width: 80%;
+  border-radius: 25px;
 `
 
 export const BoxContainer = styled.div`
@@ -17,10 +21,17 @@ export const BoxContainer = styled.div`
   height: 500px;
   border-radius: 25px;
   margin: auto;
-  width: 50%;
+  width: 100%;
 `
 
 export const TextFieldsContainer = styled.div`
-  display: flex;
-  justify-content: center;
+  margin: auto;
+  width: 80%;
+  background-color: white;
+  border-radius: 10px;
+`
+
+export const BoxItems = styled.div`
+  display: grid;
+  gap: 5%;
 `

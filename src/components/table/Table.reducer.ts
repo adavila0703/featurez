@@ -1,5 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { getFeatureListCompleted, deleteFeatureCompleted, createFeatureCompleted, searchFeature } from './Table.actions'
+import {
+  getFeatureListCompleted,
+  deleteFeatureCompleted,
+  createFeatureCompleted,
+  searchFeature,
+  resetFeatures,
+} from './Table.actions'
 
 export interface Feature {
   name: string
@@ -9,12 +15,14 @@ export interface Feature {
 export interface ITableState {
   featureList: Feature[]
   searchCache: Feature[]
+  isLoading: boolean
 }
 
 export const getInitialTableState = (): ITableState => {
   return {
     featureList: [],
     searchCache: [],
+    isLoading: true,
   }
 }
 
@@ -25,6 +33,10 @@ export const tableStateReducer = createReducer(getInitialTableState(), (builder)
       const features: Feature[] = []
       payload['feature_list'].forEach((feature: any) => features.push(feature))
       state.featureList = features
+      console.log('leng', state.featureList.length)
+      if (state.featureList.length > 0) {
+        state.isLoading = false
+      }
     })
     .addCase(deleteFeatureCompleted, (state, { payload }) => {
       state.featureList = state.featureList.filter((feature) => !payload.includes(feature.name))
@@ -41,5 +53,9 @@ export const tableStateReducer = createReducer(getInitialTableState(), (builder)
       }
       const newFeatureList: Feature[] = state.featureList.filter((feature) => feature.name.match(payload))
       state.featureList = newFeatureList
+    })
+    .addCase(resetFeatures, (state, { payload }) => {
+      state.isLoading = true
+      state.featureList = payload
     })
 )

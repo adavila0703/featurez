@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { DataGrid } from '@mui/x-data-grid'
 
 export const TableStyle = styled.div`
   display: flex;
@@ -15,6 +14,12 @@ export const TableTitle = styled.h1`
   display: flex;
   justify-content: center;
 `
-export const DataGridContainer = styled(DataGrid)`
-  height: 80%;
+export const DataGridContainer = styled.div`
+  height: 79%;
+`
+
+export const EmptyStateContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
 `

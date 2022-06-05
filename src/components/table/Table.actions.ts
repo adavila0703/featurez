@@ -1,8 +1,10 @@
 import { createAction } from '@reduxjs/toolkit'
 import { AppThunk } from '../../store/store'
 import * as featurezRequests from '../../store/requests'
+import { Feature } from './Table.reducer'
 
 const noopAction = undefined
+const route: string = 'api/feature/'
 
 export const getFeatureListStarted = createAction('STARTED_GET_FEATURE_LIST')
 export const getFeatureListFailed = createAction<any>('FAILED_GET_FEATURE_LIST')
@@ -14,7 +16,7 @@ export const getFeaturesList =
     try {
       dispatch(getFeatureListStarted())
 
-      const resp = await dispatch(featurezRequests.getRequest('GetFeatureList', getFeatureListCompleted))
+      const resp = await dispatch(featurezRequests.getRequest(route + 'GetFeatureList', getFeatureListCompleted))
       return resp
     } catch (error) {
       dispatch(getFeatureListFailed(error))
@@ -34,7 +36,7 @@ export const deleteFeature =
 
       const payload = { name: featureName }
 
-      const resp = await dispatch(featurezRequests.deleteRequest(payload, 'DeleteFeature', noopAction))
+      const resp = await dispatch(featurezRequests.deleteRequest(payload, route + 'DeleteFeature', noopAction))
 
       dispatch(deleteFeatureCompleted(featureName))
       return resp
@@ -56,7 +58,7 @@ export const updateFeature =
 
       const payload = { name: featureName, value: featureValue }
 
-      const resp = await dispatch(featurezRequests.postRequest(payload, 'UpdateFeature', noopAction))
+      const resp = await dispatch(featurezRequests.postRequest(payload, route + 'UpdateFeature', noopAction))
 
       dispatch(updateFeatureCompleted())
       return resp
@@ -78,7 +80,7 @@ export const createFeature =
 
       const payload = { name: featureName }
 
-      const resp = await dispatch(featurezRequests.postRequest(payload, 'CreateFeature', noopAction))
+      const resp = await dispatch(featurezRequests.postRequest(payload, route + 'CreateFeature', noopAction))
 
       dispatch(createFeatureCompleted(featureName))
       return resp
@@ -89,3 +91,4 @@ export const createFeature =
   }
 
 export const searchFeature = createAction<string>('SEARCH_FEATURE')
+export const resetFeatures = createAction<Feature[]>('RESET_FEATURE')
