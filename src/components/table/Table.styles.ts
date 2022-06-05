@@ -5,6 +5,8 @@ export const TableStyle = styled.div`
   justify-content: center;
   width: 500px;
   height: 600px;
+  background-color: #00808033;
+  border-radius: 10px;
 `
 
 export const TableTitle = styled.h1`
@@ -12,8 +14,12 @@ export const TableTitle = styled.h1`
   display: flex;
   justify-content: center;
 `
+export const DataGridContainer = styled.div`
+  height: 79%;
+`
 
-export const TableActionBarContainer = styled.div`
+export const EmptyStateContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding-top: 150px;
 `
