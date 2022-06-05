@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { featureTableData } from './Table.selectors'
 import { useAppDispatch } from '../../store/store'
 import { getFeaturesList } from './Table.actions'
-import { TableActionBar } from './TableActionBar'
-import { TableStyle, TableTitle } from './Table.styles'
+import { TableActionBar } from './tableactionbar/TableActionBar'
+import { TableStyle, TableTitle, DataGridContainer } from './Table.styles'
 import { TableSwitch } from './TableSwitch'
-import { DataGrid, GridColDef, GridRenderCellParams, GridSelectionModel } from '@mui/x-data-grid'
+import { GridColDef, GridRenderCellParams, GridSelectionModel } from '@mui/x-data-grid'
 
 export const Table = () => {
   const dispatch = useAppDispatch()
@@ -41,7 +41,7 @@ export const Table = () => {
       <div style={{ width: '100%' }}>
         <TableTitle>Featurez</TableTitle>
         <TableActionBar selected={selected} setSelected={setSelected} />
-        <DataGrid
+        <DataGridContainer
           rows={rows}
           columns={columns}
           checkboxSelection
